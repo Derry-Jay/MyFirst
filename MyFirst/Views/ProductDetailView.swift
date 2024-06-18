@@ -14,9 +14,9 @@ struct ProductDetailView: View {
                             AsyncImage(url: product.images[index].uri) { img in
                                 img.image?.resizable()
                             }
-//                            .onTapGesture {
-//                                print(product.images.count)
-//                            }
+                            .onTapGesture {
+                                print(product.images.count.factorial)
+                            }
 //                            .offset(y: 20)
                         }
                     }

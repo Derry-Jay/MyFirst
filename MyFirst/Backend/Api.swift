@@ -17,7 +17,7 @@ class Api : ObservableObject{
             return
         }
         URLSession.shared.dataTask(with: url) { data, response, error in
-            let products = try! JSONDecoder().decode([Product].self, from: data!)
+            let products = try! decoder.decode([Product].self, from: data!)
             print("Hi")
             print(products)
             print("Bye")
@@ -28,26 +28,25 @@ class Api : ObservableObject{
     }
     
     func loadCities(completion:@escaping ([City]) -> ()) {
-        guard let url = URL(string: "http://" + (isRealDevice ?
+        guard let url = ("http://" + (isRealDevice ?
                                                  "192.168.1.4":
-                                                    "127.0.0.1") + ":8000/cities") else {
+                                        "127.0.0.1") + ":8000/cities").uri else {
             print("Invalid url...")
             return
         }
         let config = URLSessionConfiguration.default
-        let sesh = URLSession(configuration: config)
         config.waitsForConnectivity = true
-        sesh.dataTask(with: url) { data, response, error in
+        config.uriSesh.dataTask(with: url) { data, response, error in
             print(response.debugDescription)
             do{
                 print("Hi")
-                print(data)
+                print(data as Any)
                 print("Bye")
-//                let cities = try JSONDecoder().decode([City].self, from: data!)
-//                print(cities)
-//                DispatchQueue.main.async {
-//                    completion(cities)
-//                }
+                let cities = try decoder.decode([City].self, from: data!)
+                print(cities)
+                DispatchQueue.main.async {
+                    completion(cities)
+                }
             } catch {
                 print("Hi")
                 print(error.localizedDescription)

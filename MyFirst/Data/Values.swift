@@ -8,6 +8,8 @@
 import Network
 import Foundation
 
+var decoder: JSONDecoder = JSONDecoder()
+
 var isRealDevice: Bool {
     return !(String(TARGET_OS_SIMULATOR)).signal
 }

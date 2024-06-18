@@ -9,6 +9,61 @@ import Network
 import SwiftUI
 import Foundation
 
+extension Int {
+    var factorial: Int {
+        return self < 0 ? 0 : (self == 0 || self == 1 ? 1 : (self * (self - 1).factorial))
+    }
+    
+    subscript(digitIndex: Int) -> Int {
+            var decimalBase = 1
+            for _ in 0..<digitIndex {
+                decimalBase *= 10
+            }
+            return (self / decimalBase) % 10
+        }
+}
+
+extension Double {
+    enum Kind {
+            case negative, zero, positive
+        }
+        var kind: Kind {
+            switch self {
+            case 0.0:
+                return .zero
+            case let x where x > 0.0:
+                return .positive
+            default:
+                return .negative
+            }
+        }
+}
+
+extension UIColor {
+    var color: Color {
+        return Color(self)
+    }
+}
+
+extension Color {
+    var uiColor: UIColor {
+        return UIColor(self)
+    }
+}
+
+extension URLSessionConfiguration {
+    var uriSesh: URLSession {
+        return URLSession(configuration: self)
+    }
+}
+
+extension String? {
+    var fromAsset: URL? {
+        let fl = self?.components(separatedBy: ".") ?? [String](), name = fl.first, ext = fl.last
+        return Bundle.main.url(forResource: name, withExtension: ext)
+    }
+}
+
 extension String {
     var text: Text {
         return Text(self)
@@ -34,8 +89,21 @@ extension String {
         return UIImage(named: self)
     }
     
+    var uiColor: UIColor? {
+        return UIColor(named: self)
+    }
+    
     var icon: Image {
         return Image(systemName: self)
+    }
+    
+    
+    func getColor(bdl: Bundle? = nil) -> Color {
+        return Color(self, bundle: bdl)
+    }
+    
+    func getUIColor(bdl: Bundle? = nil, cWith: UITraitCollection? = nil) -> UIColor? {
+        return UIColor(named: self, in: bdl, compatibleWith: cWith)
     }
     
     var ipV4Int: UInt32? {
