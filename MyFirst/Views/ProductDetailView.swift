@@ -5,36 +5,40 @@ struct ProductDetailView: View {
     var product: Product
     
     var body: some View {
+        ScrollView{
+            
         product.title.localizedCapitalized.text
             .font(.largeTitle)
-        
-        VStack{
-                    TabView(selection: $index) {
-                        ForEach((0..<product.images.count), id: \.self) { index in
-                            AsyncImage(url: product.images[index].uri) { img in
-                                img.image?.resizable()
-                            }
-                            .onTapGesture {
-                                print(product.images.count.factorial)
-                            }
-//                            .offset(y: 20)
-                        }
-                    }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-//                    .padding(.bottom, 32)
-                }
-//                .frame(height: 200)
-        //        HStack(spacing: 2) {
-//            ForEach((0..<(product.images.count - 1)), id: \.self) { index in
-//                Circle()
-//                    .fill(index == self.index ? Color.purple : Color.purple.opacity(0.5))
-//                    .frame(width: 20, height: 20)
+            
+            TabView(selection: $index) {
+//                  ForEach(product.images, id: \.self) { picture in
+//                                AsyncImage(url: picture.uri) { img in
+//                                    img.image
+//                                }
+//                                .onTapGesture {
+//                                    print(product.images.count.factorial)
+//                                }
 //
-//            }
+//                  }
+                ForEach((0..<product.images.count), id: \.self) { index in
+                    AsyncImage(url: product.images[index].uri) { img in
+                        img.image
+                    }
+                    .onTapGesture {
+                        print(product.images.count.factorial)
+                    }
+                }
+            }
+            .frame(height: screen.screenHeight/4)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        
+//        VStack{
+//                }
+            //                    .padding(.bottom, 32)
+            //                            .offset(y: 20)
+        //        HStack(spacing: 2) {
 //        }
 //        .padding()
-
-        ScrollView{
             VStack(alignment: .leading) {
 
 //                HStack {

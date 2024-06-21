@@ -16,12 +16,13 @@ class Api : ObservableObject{
             print("Invalid url...")
             return
         }
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        
+        sharedUrlSesh.dataTask(with: url) { data, response, error in
             let products = try! decoder.decode([Product].self, from: data!)
-            print("Hi")
-            print(products)
-            print("Bye")
-            DispatchQueue.main.async {
+//            print("Hi")
+//            print(products)
+//            print("Bye")
+            mainDispatchQueue.async {
                 completion(products)
             }
         }.resume()
@@ -34,23 +35,23 @@ class Api : ObservableObject{
             print("Invalid url...")
             return
         }
-        let config = URLSessionConfiguration.default
-        config.waitsForConnectivity = true
-        config.uriSesh.dataTask(with: url) { data, response, error in
+        
+        defaultUrlSeshConfig.waitsForConnectivity = true
+        defaultUrlSeshConfig.uriSesh.dataTask(with: url) { data, response, error in
             print(response.debugDescription)
             do{
-                print("Hi")
-                print(data as Any)
-                print("Bye")
+//                print("Hi")
+//                print(data as Any)
+//                print("Bye")
                 let cities = try decoder.decode([City].self, from: data!)
                 print(cities)
-                DispatchQueue.main.async {
+                mainDispatchQueue.async {
                     completion(cities)
                 }
             } catch {
-                print("Hi")
+//                print("Hi")
                 print(error.localizedDescription)
-                print("Bye")
+//                print("Bye")
             }
         }.resume()
     }

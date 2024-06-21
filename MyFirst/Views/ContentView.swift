@@ -48,11 +48,19 @@ struct ContentView: View {
                                 .onTapGesture {
                                 }
                         }}
-                }.padding(.leading, 20)
-                    .tabItem {
+                }
+                .padding(.leading, 20)
+                .tabItem {
                         "phone.fill".icon
                         "First Tab".localizedCapitalized.text
-                    }
+                }.onAppear {
+                                        print("Hi")
+                                        print(currentNetwork)
+                                        print("Bye")
+                    //                    Api().loadCities { (cities) in
+                    //                        self.cities = cities
+                    //                    }
+                }
                 ScrollView {
                     LazyVGrid(columns: gridItemLayout,
                               spacing: 40) {
@@ -90,7 +98,7 @@ struct ContentView: View {
                                                                     .frame(width: 50, height: 50)
                         
                                                                 VStack(alignment: .leading) {
-                                                                    product.title.localizedCapitalized.text      .bold()
+                                                                    product.title.localizedCapitalized.text.bold()
                         
 //                                                                    Text(product.description)
     
@@ -108,12 +116,9 @@ struct ContentView: View {
                     "folder.fill".icon
                     "Third Tab".localizedCapitalized.text
                 }.onAppear() {
-                    Api().loadProducts{ (products) in
+                    Api().loadProducts { (products) in
                         self.products = products
                     }
-                    //                    Api().loadCities { (cities) in
-                    //                        self.cities = cities
-                    //                    }
                 }
             }
         }

@@ -22,6 +22,8 @@
 		49B95C3A29F5A2B100D189EE /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B95C3929F5A2B100D189EE /* ProductDetailView.swift */; };
 		49E8B81029AB80940075A1A3 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8B80F29AB80940075A1A3 /* Values.swift */; };
 		B236A3292C21E536008FBCAD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B236A3282C21E536008FBCAD /* Extensions.swift */; };
+		B236A3732C254F67008FBCAD /* Continuations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B236A3722C254F67008FBCAD /* Continuations.swift */; };
+		B236A3752C25D63C008FBCAD /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B236A3742C25D63C008FBCAD /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		49B95C3929F5A2B100D189EE /* ProductDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		49E8B80F29AB80940075A1A3 /* Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		B236A3282C21E536008FBCAD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B236A3722C254F67008FBCAD /* Continuations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Continuations.swift; sourceTree = "<group>"; };
+		B236A3742C25D63C008FBCAD /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				49E8B80F29AB80940075A1A3 /* Values.swift */,
+				B236A3742C25D63C008FBCAD /* Enums.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				B236A3282C21E536008FBCAD /* Extensions.swift */,
+				B236A3722C254F67008FBCAD /* Continuations.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,8 +338,10 @@
 				49B95C3729F5950200D189EE /* Item.swift in Sources */,
 				B236A3292C21E536008FBCAD /* Extensions.swift in Sources */,
 				4984724829DC71A400E39AC5 /* Country.swift in Sources */,
+				B236A3732C254F67008FBCAD /* Continuations.swift in Sources */,
 				49E8B81029AB80940075A1A3 /* Values.swift in Sources */,
 				49B95C3529F5946300D189EE /* Product.swift in Sources */,
+				B236A3752C25D63C008FBCAD /* Enums.swift in Sources */,
 				49B95C3A29F5A2B100D189EE /* ProductDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

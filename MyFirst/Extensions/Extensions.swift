@@ -9,36 +9,6 @@ import Network
 import SwiftUI
 import Foundation
 
-extension Int {
-    var factorial: Int {
-        return self < 0 ? 0 : (self == 0 || self == 1 ? 1 : (self * (self - 1).factorial))
-    }
-    
-    subscript(digitIndex: Int) -> Int {
-            var decimalBase = 1
-            for _ in 0..<digitIndex {
-                decimalBase *= 10
-            }
-            return (self / decimalBase) % 10
-        }
-}
-
-extension Double {
-    enum Kind {
-            case negative, zero, positive
-        }
-        var kind: Kind {
-            switch self {
-            case 0.0:
-                return .zero
-            case let x where x > 0.0:
-                return .positive
-            default:
-                return .negative
-            }
-        }
-}
-
 extension UIColor {
     var color: Color {
         return Color(self)
@@ -51,18 +21,96 @@ extension Color {
     }
 }
 
+extension Int32 {
+    var unsignedInt8Bit: UInt8 {
+        return UInt8(self)
+    }
+}
+
+extension [CChar] {
+    var string: String {
+        return String(cString: self)
+    }
+}
+
+extension UnsafeMutablePointer<CChar> {
+    var string: String {
+        return String(cString: self)
+    }
+}
+
 extension URLSessionConfiguration {
     var uriSesh: URLSession {
         return URLSession(configuration: self)
     }
 }
 
-extension String? {
-    var fromAsset: URL? {
-        let fl = self?.components(separatedBy: ".") ?? [String](), name = fl.first, ext = fl.last
-        return Bundle.main.url(forResource: name, withExtension: ext)
+extension CGColor {
+    var color: Color {
+        return Color(cgColor: self)
+    }
+    
+    var uiColor: UIColor {
+        return UIColor(cgColor: self)
     }
 }
+
+extension Int {
+    var factorial: Int {
+        return self < 0 ? 0 : (self == 0 || self == 1 ? 1 : (self * (self - 1).factorial))
+    }
+    
+    subscript(digitIndex: Int) -> Int {
+            var decimalBase = 1
+            for _ in 0..<digitIndex {
+                decimalBase *= 10
+            }
+            return (self / decimalBase) % 10
+        }
+    
+    var kind: Kind {
+        switch self {
+        case 0:
+            return .zero
+        case let x where x > 0:
+            return .positive
+        default:
+            return .negative
+        }
+    }
+
+}
+
+extension Double {
+        var kind: Kind {
+            switch self {
+            case 0.0:
+                return .zero
+            case let x where x > 0.0:
+                return .positive
+            default:
+                return .negative
+            }
+        }
+}
+
+extension UIScreen {
+    var screenBounds: CGRect  {
+        return mainScreen.bounds
+    }
+
+    var screenSize: CGSize {
+        return screenBounds.size
+    }
+    
+    var screenWidth: CGFloat {
+        return screenSize.width
+    }
+    
+    var screenHeight: CGFloat {
+        return screenSize.height
+    }
+ }
 
 extension String {
     var text: Text {
@@ -108,8 +156,6 @@ extension String {
     
     var ipV4Int: UInt32? {
         let ipad = self.ipV4Addr
-        print(ipad?.debugDescription as Any)
-        print(ipad?.rawValue as Any)
         return ipad?.rawValue.withUnsafeBytes {
             $0.load(as: UInt32.self)
         }
@@ -122,7 +168,6 @@ extension String {
     
     var firstLetterCapitalized: String {
         let ip = self.trimmingCharacters(in: .whitespacesAndNewlines), p1 = String(ip.prefix(1)),p2=String(ip.suffix(ip.count - 1))
-        print(TARGET_OS_SIMULATOR)
         return p1.upperCased + p2.lowerCased
     }
     
