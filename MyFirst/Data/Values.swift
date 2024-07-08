@@ -90,11 +90,11 @@ var currentNetworkAddress: String {
             if [AF_INET.unsignedInt8Bit, AF_INET6.unsignedInt8Bit].contains([addrFamily])  {
 
                 // Check interface name:
-                let name = interface.ifa_name.string.lowerCased
+                _ = interface.ifa_name.string.lowerCased
                 
                 // Convert interface address to a human readable string:
                 var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                var temp = getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
+                let temp = getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
                             &hostname, socklen_t(hostname.count),
                             nil, socklen_t(0), NI_NUMERICHOST)
                 print(temp.description)
