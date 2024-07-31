@@ -56,8 +56,16 @@ extension CGColor {
 }
 
 extension Int {
+    var absolute: Int {
+        return abs(self)
+    }
+    
+    var eitherZeroOrOne: Bool {
+        return [0, 1].contains(self) || self == 0 || self == 1
+    }
+    
     var factorial: Int {
-        return self < 0 ? 0 : (self == 0 || self == 1 ? 1 : (self * (self - 1).factorial))
+        return self < 0 ? 0 : (eitherZeroOrOne ? 1 : (self * (self - 1).factorial))
     }
     
     subscript(digitIndex: Int) -> Int {
@@ -82,7 +90,23 @@ extension Int {
 }
 
 extension Double {
-        var kind: Kind {
+    var squareRoot: Double {
+        return sqrt(self)
+    }
+    
+    var upper: Double {
+        return ceil(self)
+    }
+    
+    var lower: Double {
+        return floor(self)
+    }
+    
+    var absolute: Double {
+        return abs(self)
+    }
+    
+    var kind: Kind {
             switch self {
             case 0.0:
                 return .zero
